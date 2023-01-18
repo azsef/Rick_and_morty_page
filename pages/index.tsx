@@ -4,8 +4,20 @@ import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
+const defaultEndpoint = 'https://rickandmortyapi.com/api/character/';
 
-export default function Home() {
+export async function getServerSideProps() {
+  const res = await fetch (defaultEndpoint); 
+  const data = await res.json(); 
+  return{
+    props: {
+      data
+    }
+  }
+}
+
+export default function Home({data}) {
+  console.log('data')
   return (
     <>
       <Head>
@@ -17,26 +29,8 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
+          Rick and Morty : projet test 
           </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
         </div>
 
         <div className={styles.center}>
