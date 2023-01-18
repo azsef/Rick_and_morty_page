@@ -3,21 +3,12 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 
-const inter = Inter({ subsets: ['latin'] })
-const defaultEndpoint = 'https://rickandmortyapi.com/api/character/';
 
-export async function getServerSideProps() {
-  const res = await fetch (defaultEndpoint); 
-  const data = await res.json(); 
-  return{
-    props: {
-      data
-    }
-  }
-}
 
-export default function Home({data}) {
-  console.log('data',data);
+
+
+export default function Home() {
+  
   return (
     <>
       <Head>
@@ -26,6 +17,7 @@ export default function Home({data}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
